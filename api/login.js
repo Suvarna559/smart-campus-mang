@@ -1,17 +1,12 @@
-let users = [];
-
 export default function handler(req, res) {
   if (req.method === "POST") {
     const { email, password } = req.body;
 
-    const user = users.find(
-      (u) => u.email === email && u.password === password
-    );
-
-    if (user) {
-      res.status(200).json({ message: "Login successful ✅" });
+    // TEMP: allow any login
+    if (email && password) {
+      return res.status(200).json({ message: "Login success ✅" });
     } else {
-      res.status(401).json({ message: "Invalid credentials ❌" });
+      return res.status(401).json({ message: "Invalid ❌" });
     }
   }
 }

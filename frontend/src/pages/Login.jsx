@@ -1,32 +1,27 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+return (
+  <div style={{ textAlign: "center", marginTop: "50px" }}>
+    <h2>Login</h2>
 
-export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+    <input
+      type="email"
+      placeholder="Enter Email"
+      onChange={(e) => setEmail(e.target.value)}
+    />
+    <br /><br />
 
-  const handleLogin = async () => {
-    const res = await fetch("/api/login", {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({ email, password })
-    });
+    <input
+      type="password"
+      placeholder="Enter Password"
+      onChange={(e) => setPassword(e.target.value)}
+    />
+    <br /><br />
 
-    const data = await res.json();
-    alert(data.message);
+    <button onClick={handleLogin}>Login</button>
 
-    if (res.status === 200) {
-      navigate("/dashboard");
-    }
-  };
+    <br /><br />
 
-  return (
-    <div>
-      <h2>Login</h2>
-      <input placeholder="Email" onChange={e=>setEmail(e.target.value)} />
-      <input type="password" placeholder="Password" onChange={e=>setPassword(e.target.value)} />
-      <button onClick={handleLogin}>Login</button>
-    </div>
-  );
-}
+    {/* 👇 ADD HERE */}
+    <a href="/signup">Go to Signup</a>
+
+  </div>
+);
